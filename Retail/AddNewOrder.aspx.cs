@@ -15,10 +15,11 @@ namespace Retail
         {
             if (!IsPostBack)
             {
-
+                if(Request.QueryString["alert"] == "success")
+                {
+                    Response.Write("<script>alert('Record saved successfully')</script>");
+                }
             }
-
-
 
         }
 
@@ -33,6 +34,8 @@ namespace Retail
             objRetail.TotalAmount = Convert.ToDecimal(txtTotalAmount.Text);
 
             objBLL.AddNewOrder(objRetail);
+
+            Response.Redirect("~/AddNewOrder.aspx?alert=success");
         }
     }
 }
